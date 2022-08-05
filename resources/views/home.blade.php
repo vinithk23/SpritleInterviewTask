@@ -19,7 +19,8 @@
                                     <div class="card-body">
                                         <ul class="nav">
                                             <li class="nav-item bg-primary rounded-circle p-2">
-                                                <span>{{ ($post->userDetails && $post->userDetails->name) ? getInitialForImage($post->userDetails->name) : '' }}</span>
+                                                <span
+                                                    class="text-light">{{ ($post->userDetails && $post->userDetails->name) ? getInitialForImage($post->userDetails->name) : '' }}</span>
                                             </li>
                                             <li class="nav-item m-2"><h6 class="m-0"><span class="m-0">
                                                         {{ ($post->userDetails && $post->userDetails->name) ? $post->userDetails->name : '' }}
@@ -61,42 +62,23 @@
                                         </div>
                                     </div>
                                     @if(Auth()->user())
-                                    <div id="displayComment_{{$post->id}}">
-                                        <div class="card m-4 border-0">
-                                            <form class="form-inline d-flex flex-wrap"><span
-                                                    class="bg-primary rounded-circle p-2 mx-3"><span>{{ getInitialForImage(Auth::user()->name ?? 'AA') }}</span></span><input
-                                                    type="text"
-                                                    class="form-control border-outline-secondary  w-75">
-                                                <button type="submit" class="btn btn-primary btn-sm mx-3">Submit
-                                                </button>
-                                            </form>
+                                        <div id="displayComment_{{$post->id}}">
+                                            @livewire('comments', ['postId' => $post->id])
                                         </div>
-                                        @foreach($post->comments as $comment)
-                                            <div class="card border-0">
-                                                <div class="mx-3">
-                                                    <ul class="nav">
-                                                        <li class="nav-item bg-primary rounded-circle p-2">
-                                                            <span>{{ ($comment->userDetails && $comment->userDetails->name) ? getInitialForImage($comment->userDetails->name) : '' }}</span>
-                                                        </li>
-                                                        <li class="nav-item m-2"><h6 class="m-0"><span
-                                                                    class="m-0">{{ ($comment->userDetails && $comment->userDetails->name) ? getInitialForImage($comment->userDetails->name) : '' }}</span>
-                                                            </h6></li>
-                                                    </ul>
-                                                    <div class="m-2">
-                                                        <p>{{ $comment->comment ?? '' }}</p>
-                                                        <hr>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        @endforeach
-                                    </div>
                                     @endif
                                 </div>
                             @endforeach
-                            <span>
-                                {{ $data->links() }}
-                            </span>
+                            <div class="row col-12 justify-content-center d-flex">
+<div class="col-3"></div>
+<div class="col-6">
+    <span class="justify-content-center">
+                                        {{ $data->links() }}
+                                    </span>
+</div>
+<div class="col-3"></div>
+
+
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -121,13 +103,13 @@
                         if (response.message === 'Success') {
                             let likeCount = response.likeCount;
                             var likeText = '';
-                            if(likeCount > 1){
-                                likeText = likeCount +' Likes';
+                            if (likeCount > 1) {
+                                likeText = likeCount + ' Likes';
                             } else {
-                                likeText = likeCount +' Like';
+                                likeText = likeCount + ' Like';
                             }
                             likeId.data('value', 1);
-                            likeId.html('<i class="fa fa-heart text-danger" aria-hidden="true"> '+likeText+'</i>');
+                            likeId.html('<i class="fa fa-heart text-danger" aria-hidden="true"> ' + likeText + '</i>');
                         }
                     },
                     error: function (error, jqXHR, textStatus) {
@@ -148,13 +130,13 @@
                         if (response.message === 'Success') {
                             let likeCount = response.likeCount;
                             var likeText = '';
-                            if(likeCount > 1){
-                                likeText = likeCount +' Likes';
+                            if (likeCount > 1) {
+                                likeText = likeCount + ' Likes';
                             } else {
-                                likeText = likeCount +' Like';
+                                likeText = likeCount + ' Like';
                             }
                             likeId.data('value', 0);
-                            likeId.html('<i class="fa fa-heart-o" aria-hidden="true"> '+likeText+'</i>');
+                            likeId.html('<i class="fa fa-heart-o" aria-hidden="true"> ' + likeText + '</i>');
                         }
                     },
                     error: function (error, jqXHR, textStatus) {
@@ -169,6 +151,19 @@
             $("#displayComment_" + id).toggle();
         }
 
+        $("#currentPostView").change(function () {
+            alert('fsjcbfj');
+            // const element = document.getElementById("currentPostView");
+            // element.scrollIntoView();
+            // alert("The text has been changed.");
+        });
+
+        function newCommmandScroll(postId) {
+
+            setTimeout(function () {
+                alert(postId);
+            }, 5000);
+        }
 
         @endif
 

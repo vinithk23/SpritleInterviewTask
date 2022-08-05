@@ -33,6 +33,8 @@
             overflow-x: hidden;
         }
     </style>
+
+    @livewireStyles
 </head>
 <body>
     <div id="app">
@@ -110,6 +112,7 @@
         $("#navbarSupportedContent").toggle();
     });
 </script>
+    @livewireScripts
 </body>
 </html>
 {{--<script>--}}
