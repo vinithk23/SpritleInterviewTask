@@ -46,7 +46,7 @@
                                                                 id="heart_{{$post->id}}"
                                                                 data-value="{{ $post->canLike ?? 1 }}"
                                                                 {{ (Auth()->user()) ? "onclick=heartChange(".$post->id.")" : '' }}><i
-                                                                    class="{{ ($post->canLike == 1) ? 'fa fa-heart text-danger justify-content-end' : 'fa fa-heart-o justify-content-end' }}"
+                                                                    class="justify-content-end {{ ($post->canLike == 1) ? 'fa fa-heart text-danger' : 'fa fa-heart-o' }}"
                                                                     aria-hidden="true"> {{ ($post->likeCount > 1) ? $post->likeCount.' Likes' : $post->likeCount.' Like' }}</i></span></a>
                                                     </div>
 
