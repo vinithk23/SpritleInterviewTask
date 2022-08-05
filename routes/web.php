@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -31,3 +32,6 @@ Route::post('post/store', [PostController::class, 'store'])->name('post.store');
 Route::get('post/edit/{post}', [PostController::class, 'edit'])->name('post.edit');
 Route::put('post/update/{post}', [PostController::class, 'update'])->name('post.update');
 Route::delete('post/destroy/{post}', [PostController::class, 'destroy'])->name('post.destroy');
+
+Route::post('like', [LikeController::class, 'like'])->name('like');
+Route::post('disLike', [LikeController::class, 'destroy'])->name('disLike');

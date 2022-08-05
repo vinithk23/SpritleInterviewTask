@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
+use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -19,10 +21,13 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return Renderable
      */
     public function index()
     {
-        return view('home');
+        $data = Post::with('userDetails', 'comments.userDetails')->orderByDesc('updated_at')->paginate(5);
+        info('$posts');
+        info($data);
+        return view('home', compact('data'));
     }
 }

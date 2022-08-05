@@ -3,12 +3,23 @@
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 
+
+function getInitialForImage($name){
+    $words = explode(" ", $name);
+    $acronym = "";
+    foreach ($words as $w) {
+        $acronym .= mb_substr($w, 0, 1);
+    }
+    return strtoupper($acronym);
+}
+
 /**
  * Get carbon from date string.
  *
  * @param $date
  * @return Carbon
  */
+
 function getCarbon($date)
 {
     $format = 'Y-m-d H:i:s';

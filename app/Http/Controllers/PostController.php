@@ -39,8 +39,6 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        info('$request');
-        info($request);
         DB::beginTransaction();
         try {
             Post::create($request->all());

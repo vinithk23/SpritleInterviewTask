@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LikeRequest;
 use App\Models\Like;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class LikeController extends Controller
 {
@@ -72,14 +74,45 @@ class LikeController extends Controller
         //
     }
 
+    public function like(LikeRequest $request)
+    {
+        DB::beginTransaction();
+        try {
+            if(Like::where('post_id', $request->post_id)->where('user_id', $request->user_id)->count() == 0){
+                Like::create($request->all());
+            }
+            $likeCount = Like::where('post_id', $request->post_id)->count();
+            DB::commit();
+            return response(['message' => 'Success', 'likeCount' => $likeCount]);
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            info('Error::Place@LikeController@like - ' . $exception->getMessage());
+            return response(['message' => 'fail']);
+        }
+    }
+
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Like  $like
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Like $like)
+
+
+    public function destroy(LikeRequest $request)
     {
-        //
+        info('disLike $request');
+        info($request);
+        DB::beginTransaction();
+        try {
+            Like::where('post_id', $request->post_id)->where('user_id', $request->user_id)->delete();
+            $likeCount = Like::where('post_id', $request->post_id)->count();
+            DB::commit();
+            return response(['message' => 'Success', 'likeCount' => $likeCount]);
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            info('Error::Place@LikeController@destroy - ' . $exception->getMessage());
+            return response(['message' => 'fail']);
+        }
     }
 }

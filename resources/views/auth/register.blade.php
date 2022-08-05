@@ -1,6 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
+    <style>
+        body{
+            /*background: rgb(2,0,36);*/
+            /*background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(170,87,237,1) 73%, rgba(0,212,255,1) 100%);*/
+
+            background-image: url('image/gardiant_background.jpg');
+            width: 100%;
+            height:auto;
+            background-size: cover;
+        }
+    </style>
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
