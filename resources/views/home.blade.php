@@ -19,10 +19,10 @@
                                     <div class="card-body">
                                         <ul class="nav">
                                             <li class="nav-item bg-primary rounded-circle p-2">
-                                                <span>{{ ($post->userDetails && $post->userDetails[0]->name) ? getInitialForImage($post->userDetails[0]->name) : '' }}</span>
+                                                <span>{{ ($post->userDetails && $post->userDetails->name) ? getInitialForImage($post->userDetails->name) : '' }}</span>
                                             </li>
                                             <li class="nav-item m-2"><h6 class="m-0"><span class="m-0">
-                                                        {{ ($post->userDetails && $post->userDetails[0]->name) ? $post->userDetails[0]->name : '' }}
+                                                        {{ ($post->userDetails && $post->userDetails->name) ? $post->userDetails->name : '' }}
                                                     </span>
                                                 </h6></li>
                                         </ul>
@@ -33,28 +33,34 @@
                                     </div>
                                     <div class="card-footer">
                                         <div class="row">
-                                            <div class="col-md-6">
+                                            <div class="col-5">
 
                                                 <p class="small">Posted {{ $post->updated_at->diffForHumans() }} </p>
                                             </div>
-                                            <div class="col-md-6">
-                                                <ul class="nav" style="float: right;">
-                                                    <li class="nav-item mx-3"><a class="btn"><span
+                                            <div class="col-6 col-md-6 d-flex">
+                                                <div class="col-md-1"></div>
+                                                <div class="col-6 justify-content-end d-flex">
+                                                    <div class="col-6"></div>
+                                                    <div class="col-6 col-md-8">
+                                                        <a class="btn"><span
                                                                 id="heart_{{$post->id}}"
                                                                 data-value="{{ $post->canLike ?? 1 }}"
                                                                 {{ (Auth()->user()) ? "onclick=heartChange(".$post->id.")" : '' }}><i
-                                                                    class="{{ ($post->canLike == 1) ? 'fa fa-heart text-danger' : 'fa fa-heart-o' }}"
-                                                                    aria-hidden="true">{{ ($post->likeCount > 1) ? $post->likeCount.' Likes' : $post->likeCount.' Like' }}</i></span></a>
-                                                    </li>
-                                                    <li class="nav-item"><a class="btn comment_{{$post->id}}"
-                                                            {{ (Auth()->user()) ? "onclick=commentClick(".$post->id.")" : '' }}><span><i
-                                                                    class="fa fa-comment-o"
-                                                                    aria-hidden="true"> Comments</i></span></a>
-                                                    </li>
-                                                </ul>
+                                                                    class="{{ ($post->canLike == 1) ? 'fa fa-heart text-danger justify-content-end' : 'fa fa-heart-o justify-content-end' }}"
+                                                                    aria-hidden="true"> {{ ($post->likeCount > 1) ? $post->likeCount.' Likes' : $post->likeCount.' Like' }}</i></span></a>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-6 col-md-6">
+                                                    <a class="btn comment_{{$post->id}}"
+                                                        {{ (Auth()->user()) ? "onclick=commentClick(".$post->id.")" : '' }}><span><i
+                                                                class="fa fa-comment-o"
+                                                                aria-hidden="true"> {{ $post->commentCount ?? '' }} Comments</i></span></a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                    @if(Auth()->user())
                                     <div id="displayComment_{{$post->id}}">
                                         <div class="card m-4 border-0">
                                             <form class="form-inline d-flex flex-wrap"><span
@@ -70,10 +76,10 @@
                                                 <div class="mx-3">
                                                     <ul class="nav">
                                                         <li class="nav-item bg-primary rounded-circle p-2">
-                                                            <span>{{ ($comment->userDetails && $comment->userDetails[0]->name) ? getInitialForImage($comment->userDetails[0]->name) : '' }}</span>
+                                                            <span>{{ ($comment->userDetails && $comment->userDetails->name) ? getInitialForImage($comment->userDetails->name) : '' }}</span>
                                                         </li>
                                                         <li class="nav-item m-2"><h6 class="m-0"><span
-                                                                    class="m-0">{{ ($comment->userDetails && $comment->userDetails[0]->name) ? getInitialForImage($comment->userDetails[0]->name) : '' }}</span>
+                                                                    class="m-0">{{ ($comment->userDetails && $comment->userDetails->name) ? getInitialForImage($comment->userDetails->name) : '' }}</span>
                                                             </h6></li>
                                                     </ul>
                                                     <div class="m-2">
@@ -85,6 +91,7 @@
                                             </div>
                                         @endforeach
                                     </div>
+                                    @endif
                                 </div>
                             @endforeach
                             <span>
@@ -120,7 +127,7 @@
                                 likeText = likeCount +' Like';
                             }
                             likeId.data('value', 1);
-                            likeId.html('<i class="fa fa-heart text-danger" aria-hidden="true">'+likeText+'</i>');
+                            likeId.html('<i class="fa fa-heart text-danger" aria-hidden="true"> '+likeText+'</i>');
                         }
                     },
                     error: function (error, jqXHR, textStatus) {
@@ -147,7 +154,7 @@
                                 likeText = likeCount +' Like';
                             }
                             likeId.data('value', 0);
-                            likeId.html('<i class="fa fa-heart-o" aria-hidden="true">'+likeText+'</i>');
+                            likeId.html('<i class="fa fa-heart-o" aria-hidden="true"> '+likeText+'</i>');
                         }
                     },
                     error: function (error, jqXHR, textStatus) {
@@ -162,7 +169,7 @@
             $("#displayComment_" + id).toggle();
         }
 
-        
+
         @endif
 
     </script>

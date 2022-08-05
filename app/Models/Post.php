@@ -10,7 +10,7 @@ class Post extends Model
 {
     use HasFactory;
 
-    protected $appends = ['likeCount', 'canLike'];
+    protected $appends = ['likeCount', 'canLike', 'commentCount'];
     protected $fillable = [
         'user_id',
         'content',
@@ -26,9 +26,14 @@ class Post extends Model
         return Like::where('post_id', $this->id)->where('user_id', Auth()->user()->id ?? '')->count();
     }
 
+    public function getcommentCountAttribute()
+    {
+        return Comment::where('post_id', $this->id)->count();
+    }
+
     public function userDetails()
     {
-        return $this->hasMany(User::class, 'id', 'user_id');
+        return $this->hasOne(User::class, 'id', 'user_id');
     }
 
     public function comments()

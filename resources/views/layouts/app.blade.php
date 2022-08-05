@@ -68,18 +68,17 @@
                             @endif
                         @else
                             <a class="btn btn-primary mx-auto" href="{{ route('post.create') }}">Add Post</a>
-                            <li class="nav-item dropdown mx-auto">
-                                <div class="dropdown">
-                                    <a class="btn mx-auto dropdown-toggle" data-toggle="dropdown">
-                                        <i class="fa fa-bell-o" aria-hidden="true"></i></a>
-                                    <div class="dropdown-menu scrollable-menu px-3 small" style="min-width: max-content;">
-                                        <p class="small">Siva liked your post </p><hr>
-                                        <p class="small">Siva liked your post</p><hr>
-                                        <p class="small">Siva liked your post</p><hr>
-                                    </div>
-                                </div>
-
-                            </li>
+{{--                            <li class="nav-item dropdown mx-auto">--}}
+{{--                                <div class="dropdown">--}}
+{{--                                    <a class="btn mx-auto dropdown-toggle" data-toggle="dropdown">--}}
+{{--                                        <i class="fa fa-bell-o" aria-hidden="true"></i></a>--}}
+{{--                                    <div class="dropdown-menu scrollable-menu px-3 small" style="min-width: max-content;">--}}
+{{--                                        <p class="small">Siva liked your post </p><hr>--}}
+{{--                                        <p class="small">Siva liked your post</p><hr>--}}
+{{--                                        <p class="small">Siva liked your post</p><hr>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </li>--}}
                             <li class="nav-item dropdown mx-auto">
                                 <div class="dropdown">
                                     <button type="button" class="btn  dropdown-toggle" id="'navbarDropdownMenuLink" data-toggle="dropdown">

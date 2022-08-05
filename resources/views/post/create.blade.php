@@ -12,7 +12,7 @@
                 <div class="card-body">
                     <div class="col-md-12">
 
-                        <div class="titles text-center bg-emp-title p-2">
+                        <div class="col-md-12 titles text-center bg-emp-title p-2">
                             <h6>What I did interesting today</h6>
                             <form id="createPostForm" autocomplete="off" method="POST" class="form-validate"
                                   action="{{  $post ? route('post.update',  $post->id) : route('post.store') }}">
@@ -22,10 +22,10 @@
                                 <input type="hidden" name="content" id="content" value="">
                                 <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
 
-                                <div class="row mt-2">
+                                <div class="row col-md-12 mt-2">
                                     <div class="col-md-12">
-                                        <div id="div_editor1" class="mt-3">
-                                            {!!  $post ? ( $post->content ?? '') : '' !!}
+                                        <div id="div_editor1" class="mt-3" style="min-width: auto;">
+                                            {!!  $post ? ($post->content ?? '') : '' !!}
                                         </div>
                                     </div>
                                 </div>
