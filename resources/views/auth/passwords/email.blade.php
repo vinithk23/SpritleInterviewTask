@@ -1,6 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
+    <style>
+        body {
+            background-image: url({{asset('image/gardiant_background.jpg')}});
+            width: 100%;
+            height: auto;
+            background-size: cover;
+        }
+    </style>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">

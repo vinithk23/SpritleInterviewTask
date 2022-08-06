@@ -8,7 +8,7 @@
     </style>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-xl-9 col-lg-10 col-md-10">
                 <div class="card">
                     {{--                <div class="card-header">{{ __('Dashboard') }}</div>--}}
 
@@ -62,22 +62,18 @@
                                         </div>
                                     </div>
                                     @if(Auth()->user())
-                                        <div id="displayComment_{{$post->id}}">
-                                            @livewire('comments', ['postId' => $post->id])
+                                        <div id="displayComment_{{$post->id}}" class="commentHide">
+{{--                                            <livewire:comments :postId="$post->id" :wire:key="'item-'.$post->id">--}}
+{{--                                            @livewire('comments', ['postId' => $post->id])--}}
+                                                @livewire('comments', ['postId' => $post->id], key('postId-'.$post->id))
                                         </div>
                                     @endif
                                 </div>
                             @endforeach
-                            <div class="row col-12 justify-content-center d-flex">
-<div class="col-3"></div>
-<div class="col-6">
-    <span class="justify-content-center">
+                            <div class="row justify-content-center">
+                                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
                                         {{ $data->links() }}
-                                    </span>
-</div>
-<div class="col-3"></div>
-
-
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -86,6 +82,9 @@
         </div>
     </div>
     <script>
+
+        $('.commentHide').hide();
+
         @if(Auth()->user())
         function heartChange(id) {
             let likeId = $("#heart_" + id);
@@ -151,19 +150,19 @@
             $("#displayComment_" + id).toggle();
         }
 
-        $("#currentPostView").change(function () {
-            alert('fsjcbfj');
-            // const element = document.getElementById("currentPostView");
-            // element.scrollIntoView();
-            // alert("The text has been changed.");
-        });
-
-        function newCommmandScroll(postId) {
-
-            setTimeout(function () {
-                alert(postId);
-            }, 5000);
-        }
+        // $("#currentPostView").change(function () {
+        //     alert('fsjcbfj');
+        //     // const element = document.getElementById("currentPostView");
+        //     // element.scrollIntoView();
+        //     // alert("The text has been changed.");
+        // });
+        //
+        // function newCommmandScroll(postId) {
+        //
+        //     setTimeout(function () {
+        //         alert(postId);
+        //     }, 5000);
+        // }
 
         @endif
 
