@@ -33,6 +33,7 @@ class Comments extends Component
 
     public function addComment()
     {
+        $this->postCommentCount = count($this->postComments);
         $this->validate();
 
         $input['comment'] = $this->comment;
