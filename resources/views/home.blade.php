@@ -159,13 +159,6 @@
 
         }
 
-        // $("#commentCount").change(function (thiss) {
-        //     alert('fsjcbfj');
-        //     // const element = document.getElementById("currentPostView");
-        //     // element.scrollIntoView();
-        //     // alert("The text has been changed.");
-        // });
-
         function commentIncrement(postId) {
             setTimeout(function () {
                 $('#commentCountSpan_' + postId).text(parseInt($('.currentPostCommentCount_' + postId).val()));
