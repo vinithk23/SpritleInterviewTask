@@ -5,6 +5,16 @@
         .w-5 {
             display: none;
         }
+
+        .postBody{
+            background: rgb(2,0,36);
+            background: linear-gradient(318deg, rgba(2,0,36,1) 0%, rgba(159,92,190,1) 13%, rgba(0,212,255,1) 100%);
+        }
+
+        body{
+            background: rgb(2,0,36);
+            background: linear-gradient(148deg, rgba(2,0,36,1) 0%, rgba(159,92,190,1) 56%, rgba(0,212,255,1) 100%);
+        }
     </style>
     <div class="container">
         <div class="row justify-content-center">

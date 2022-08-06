@@ -101,8 +101,6 @@ class LikeController extends Controller
 
     public function destroy(LikeRequest $request)
     {
-        info('disLike $request');
-        info($request);
         DB::beginTransaction();
         try {
             Like::where('post_id', $request->post_id)->where('user_id', $request->user_id)->delete();

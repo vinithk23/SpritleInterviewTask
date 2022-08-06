@@ -25,9 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $data = Post::with('userDetails', 'comments.userDetails')->orderByDesc('updated_at')->simplePaginate(5);
-        info('$posts');
-        info($data);
+        $data = Post::with('userDetails', 'comments.userDetails')->orderByDesc('updated_at')->simplePaginate(15);
         return view('home', compact('data'));
     }
 }

@@ -5,7 +5,13 @@
     <link rel="stylesheet" href="{{ url('richtexteditor/rte_theme_default.css') }}" />
     <script type="text/javascript" src="{{ url('richtexteditor/rte.js') }}"></script>
     <script type="text/javascript" src='{{ url('richtexteditor/plugins/all_plugins.js') }}'></script>
-<div class="container">
+    <style>
+        body{
+            background: rgb(2,0,36);
+            background: linear-gradient(148deg, rgba(2,0,36,1) 0%, rgba(159,92,190,1) 56%, rgba(0,212,255,1) 100%);
+        }
+    </style>
+<div class="container" style="">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
