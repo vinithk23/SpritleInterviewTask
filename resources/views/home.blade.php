@@ -56,23 +56,24 @@
                                                     <a class="btn comment_{{$post->id}}"
                                                         {{ (Auth()->user()) ? "onclick=commentClick(".$post->id.")" : '' }}><span><i
                                                                 class="fa fa-comment-o"
-                                                                aria-hidden="true"> {{ $post->commentCount ?? '' }} Comments</i></span></a>
+                                                                aria-hidden="true"> <span
+                                                                    id="commentCountSpan_{{$post->id}}">{{ $post->commentCount ?? 0 }}</span> Comments</i></span></a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     @if(Auth()->user())
                                         <div id="displayComment_{{$post->id}}" class="commentHide">
-{{--                                            <livewire:comments :postId="$post->id" :wire:key="'item-'.$post->id">--}}
-{{--                                            @livewire('comments', ['postId' => $post->id])--}}
-                                                @livewire('comments', ['postId' => $post->id], key('postId-'.$post->id))
+                                            {{--                                            <livewire:comments :postId="$post->id" :wire:key="'item-'.$post->id">--}}
+                                            {{--                                            @livewire('comments', ['postId' => $post->id])--}}
+                                            @livewire('comments', ['postId' => $post->id], key('postId-'.$post->id))
                                         </div>
                                     @endif
                                 </div>
                             @endforeach
                             <div class="row justify-content-center">
                                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
-                                        {{ $data->links() }}
+                                    {{ $data->links() }}
                                 </div>
                             </div>
                         </div>
@@ -147,22 +148,29 @@
 
 
         function commentClick(id) {
-            $("#displayComment_" + id).toggle();
+            let displayComment = $("#displayComment_" +id);
+            displayComment.toggle();
+
+            if (displayComment.css('display') !== 'none') {
+                $(".comment_"+ id).addClass("text-danger");
+            } else {
+                $(".comment_"+ id).removeClass("text-danger");
+            }
+
         }
 
-        // $("#currentPostView").change(function () {
+        // $("#commentCount").change(function (thiss) {
         //     alert('fsjcbfj');
         //     // const element = document.getElementById("currentPostView");
         //     // element.scrollIntoView();
         //     // alert("The text has been changed.");
         // });
-        //
-        // function newCommmandScroll(postId) {
-        //
-        //     setTimeout(function () {
-        //         alert(postId);
-        //     }, 5000);
-        // }
+
+        function commentIncrement(postId) {
+            setTimeout(function () {
+                $('#commentCountSpan_' + postId).text(parseInt($('.currentPostCommentCount_' + postId).val()));
+            }, 1000);
+        }
 
         @endif
 

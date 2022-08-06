@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Comment;
+use http\Env\Request;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -12,7 +13,7 @@ class Comments extends Component
     public $postComments;
     public $postId;
     public $comment;
-    public $currentPostDivId;
+    public $postCommentCount;
 
     public function render()
     {
@@ -39,6 +40,8 @@ class Comments extends Component
         $input['user_id'] = Auth::user()->id;
         $newComment = Comment::create($input);
         $this->postComments->push($newComment);
+        $this->postCommentCount = count($this->postComments);
+        $this->comment = "";
         $this->newComment = "";
     }
 }
